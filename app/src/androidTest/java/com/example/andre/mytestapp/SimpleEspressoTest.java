@@ -6,12 +6,18 @@ package com.example.andre.mytestapp;
  */
 
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.matcher.ViewMatchers;
 import android.test.ActivityInstrumentationTestCase2;
+
+import com.example.andre.mytestapp.fragment.ItemFragment;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.withChild;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
 
 public class SimpleEspressoTest extends ActivityInstrumentationTestCase2<MainActivity> {
     private MainActivity mActivity;
@@ -28,9 +34,9 @@ public class SimpleEspressoTest extends ActivityInstrumentationTestCase2<MainAct
 
     public void testEnterName() throws Exception {
         Thread.sleep(5000);
-      //  onView((is(instanceOf(ItemFragment.class)));
 //        onView(withId(R.id.progress)).check(matches(isDisplayed()));
 //        onView(withId(R.id.count)).perform(click());
-        onView(withId(R.id.status)).check(matches(withText("22 альбома")) );
+        onView(ViewMatchers.withId(R.id.my_recycler_view))
+                .check(matches(withText("22 альбома")) );
     }
 }

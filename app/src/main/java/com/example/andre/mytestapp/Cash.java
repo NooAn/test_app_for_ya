@@ -57,6 +57,10 @@ public class Cash {
         return gson.fromJson(sharedPref.getString(CASH, ""), fooType);
     }
 
+    /**
+     *
+     * @return if shared is empty FALSE, else Not empty TRUE
+     */
     public boolean is() {
         return sharedPref.getString(CASH, "").compareTo("") != 0;
     }

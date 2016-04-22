@@ -70,7 +70,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     }
 
     public String getLinkImage(String link) {
-        if (link != null && link.isEmpty())
+        if (link != null && !link.isEmpty())
             return link;
         else return URL_IMAGE_DEFAULT;
     }

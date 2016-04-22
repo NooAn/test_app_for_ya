@@ -11,8 +11,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        //junit test
-        testInstrumentationRunner "de.qabel.qabelbox.QblJUnitRunner"
     }
     buildTypes {
         release {
