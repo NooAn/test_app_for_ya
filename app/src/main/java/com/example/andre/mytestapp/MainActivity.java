@@ -1,6 +1,5 @@
 package com.example.andre.mytestapp;
 
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.andre.mytestapp.fragment.ItemFragment;
-import com.example.andre.mytestapp.fragment.ProfileFragment;
 import com.example.andre.mytestapp.model.Artist;
 import com.lsjwzh.widget.materialloadingprogressbar.CircleProgressBar;
 
@@ -43,18 +41,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         progress = (CircleProgressBar) findViewById(R.id.progress);
         if (progress != null) {
             progress.setVisibility(View.VISIBLE);
         }
-        loadList(); // Если данные обновляеются у нас редко то можно сделать проверку на уже кэшированые данные.
+        loadList(); // Если данные обновляеются у нас редко то можно сделать проверку на уже кэшированые данные. А пока предположим что нам всегда нужны только актуальные данные.
     }
 
     public void onEvent(ArrayList<Artist> list) {
@@ -83,11 +78,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ArrayList<Artist>> call, Throwable t) {
-                /* Если у нас уже есть закэшированные данные, то используем их */
+                /* Если у нас уже есть закэшированные данные, то используем их. А если нет, то давайте выведем уведомление  */
                 if (Cash.getInstance(getApplicationContext()).is()) {
                     onEvent(Cash.getInstance(getApplicationContext()).take());
                 } else
-                    Toast.makeText(MainActivity.this, getResources().getText(R.string.error_net), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, getResources().getText(R.string.error_net), Toast.LENGTH_LONG).show();
                 progress.setVisibility(View.GONE);
 
             }
@@ -114,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             if (fragment instanceof ItemFragment)
                 getSupportActionBar().setTitle(getResources().getText(R.string.title_artists));
-
         } catch (Exception ignored) {
         }
     }

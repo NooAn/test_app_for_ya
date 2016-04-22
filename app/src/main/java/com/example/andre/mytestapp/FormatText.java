@@ -3,7 +3,7 @@ package com.example.andre.mytestapp;
 import java.util.ArrayList;
 
 /**
- * Created by Andre on 20.04.2016.
+ * Created by Andre on 21.04.2016.
  */
 public class FormatText {
 
@@ -34,9 +34,9 @@ public class FormatText {
      * @param param3 - окончания слова при < 5 >1
      * @return отформатированное слово в нужном числе
      */
-     private static String getTerminated(int number, String word, String param1, String param2, String param3) {
+    private static String getTerminated(int number, String word, String param1, String param2, String param3) {
         String terminated = "";
-         int tNumber = number;
+        int tNumber = number;
         number %= 100;
         if (number > 10 && number < 15) {
             terminated = param1;//"ен"; // ов

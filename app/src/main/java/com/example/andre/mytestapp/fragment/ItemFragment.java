@@ -2,6 +2,7 @@ package com.example.andre.mytestapp.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +20,8 @@ import java.util.ArrayList;
 
 public class ItemFragment extends Fragment {
 
-    private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final String SAVE_ARTISTS = "save";
+    public static final String LIST = "list";
     private ArrayList<Artist> list;
     private RecyclerView mRecyclerView;
     private Adapter mAdapter;
@@ -43,6 +45,9 @@ public class ItemFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.content_main, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        if (savedInstanceState != null && savedInstanceState.containsKey(SAVE_ARTISTS)) {
+            list = savedInstanceState.getParcelableArrayList(SAVE_ARTISTS);
+        }
         assert mRecyclerView != null;
         mRecyclerView.setVisibility(View.INVISIBLE);
         mRecyclerView.setHasFixedSize(true);
@@ -52,6 +57,7 @@ public class ItemFragment extends Fragment {
         mAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mAdapter);
         setUpRececlerView(list);
+
         return view;
     }
 
@@ -59,10 +65,9 @@ public class ItemFragment extends Fragment {
         mAdapter.setOnItemClickListener(new Adapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Log.w("LOG", "click on "+position);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.content_frame, new ProfileFragment().createInstance((Artist) list.get(position)))
-                        .addToBackStack("list")
+                        .addToBackStack(LIST)
                         .commit();
             }
         });
@@ -78,4 +83,10 @@ public class ItemFragment extends Fragment {
         super.onDetach();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        if (list != null)
+            outState.putParcelableArrayList(SAVE_ARTISTS, new ArrayList<Parcelable>(list));
+        super.onSaveInstanceState(outState);
+    }
 }

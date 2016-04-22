@@ -36,8 +36,8 @@ public class ArtistUnitTest extends TestCase {
     }
 
     public void testLink() throws Exception {
-        artist.setLink("http://example.com");
-        assertEquals("http://example.com", artist.getLink());
+        artist.setLink("http://x777x.com");
+        assertEquals("http://x777x.com", artist.getLink());
     }
 
     public void testDescription() throws Exception {

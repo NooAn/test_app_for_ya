@@ -16,7 +16,6 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 /**
  * Created by Andre on 22.04.2016.
@@ -35,7 +34,6 @@ public class EspressoTest {
     public void testView() {
         ItemFragment myFragment = startMyFragment();
         onView(ViewMatchers.withId(R.id.my_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(2, click()));
-//        onView(withId(R.id.count_albums)).check(matches(withText("152 альбома")) );
     }
 
     private ItemFragment startMyFragment() {

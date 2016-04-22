@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
-    private static final String URL_IMAGE_DEFAULT = "https://i.ytimg.com/vi/IaaYWdryo4Y/hqdefault.jpg";
+    private static final String URL_IMAGE_DEFAULT = "https://i.ytimg.com/vi/IaaYWdryo4Y/hqdefault.jpg";// просто веселая картинка.
     OnItemClickListener mItemClickListener;
     private ArrayList<Artist> mArtists;
     private Context mContext;

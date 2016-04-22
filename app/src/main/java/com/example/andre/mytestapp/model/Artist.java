@@ -1,12 +1,26 @@
 package com.example.andre.mytestapp.model;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 /**
  * Created by Andre on 20.04.2016.
  */
-public class Artist{
+public class Artist implements Parcelable {
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Artist> CREATOR = new Parcelable.Creator<Artist>() {
+        @Override
+        public Artist createFromParcel(Parcel in) {
+            return new Artist(in);
+        }
+
+        @Override
+        public Artist[] newArray(int size) {
+            return new Artist[size];
+        }
+    };
     private int id;
     private String name;
     private ArrayList<String> genres;
@@ -26,6 +40,23 @@ public class Artist{
         this.description = description;
         this.cover = cover;
     }
+
+    protected Artist(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        if (in.readByte() == 0x01) {
+            genres = new ArrayList<String>();
+            in.readList(genres, String.class.getClassLoader());
+        } else {
+            genres = null;
+        }
+        tracks = in.readInt();
+        albums = in.readInt();
+        link = in.readString();
+        description = in.readString();
+        cover = (Artist.Cover) in.readValue(Artist.Cover.class.getClassLoader());
+    }
+
     public String getDescription() {
         return description;
     }
@@ -90,6 +121,32 @@ public class Artist{
         this.cover = cover;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        try {
+            dest.writeInt(id);
+            dest.writeString(name);
+            if (genres == null) {
+                dest.writeByte((byte) (0x00));
+            } else {
+                dest.writeByte((byte) (0x01));
+                dest.writeList(genres);
+            }
+            dest.writeInt(tracks);
+            dest.writeInt(albums);
+            dest.writeString(link);
+            dest.writeString(description);
+            dest.writeValue(cover);
+        } catch (Exception e) {
+
+        }
+    }
+
     public class Cover {
         private String small;
         private String big;
@@ -111,8 +168,8 @@ public class Artist{
         }
 
         @Override
-        public String toString(){
-            return getSmall() + " " +getBig();
+        public String toString() {
+            return getSmall() + " " + getBig();
         }
     }
 }
