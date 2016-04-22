@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/cover_big"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="15dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginLeft="@dimen/margin_profile"
+            android:layout_marginRight="15dp"
+            android:layout_marginStart="@dimen/margin_profile"
+            android:text="Style"
+            android:textColor="#999" />
+
+        <TextView
+            android:id="@+id/count_albums"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginLeft="@dimen/margin_profile"
+            android:layout_marginRight="15dp"
+            android:layout_marginStart="@dimen/margin_profile"
+            android:text="15 Альбомов"
+            android:textColor="#999" />
+
+        <TextView
+            android:id="@+id/bibl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginLeft="@dimen/margin_profile"
+            android:layout_marginRight="15dp"
+            android:layout_marginStart="@dimen/margin_profile"
+            android:text="@string/biogrgh"
+            android:textColor="#000"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginLeft="@dimen/margin_profile"
+            android:layout_marginRight="15dp"
+            android:layout_marginStart="@dimen/margin_profile"
+            android:text="@string/text"
+            android:textColor="#000"
+            android:textSize="16dp" />
+
+
+    </LinearLayout>
+</ScrollView>
